@@ -3,7 +3,6 @@ from typing import Union
 import boto3
 import pandas as pd
 from pathlib import Path
-from dotenv import load_dotenv
 
 
 def s3_download_file(s3_filepath: str, destination: Union[str, os.PathLike]):
@@ -12,7 +11,6 @@ def s3_download_file(s3_filepath: str, destination: Union[str, os.PathLike]):
 
     s3_filepath must be file path relative to the bucket
     """
-    load_dotenv()
     key_id = os.getenv("AWS_ACCESS_KEY_ID")
     secret_key = os.getenv("AWS_SECRET_ACCESS_KEY")
     endpoint = os.getenv("AWS_S3_ENDPOINT")
@@ -37,7 +35,6 @@ def s3_download_file(s3_filepath: str, destination: Union[str, os.PathLike]):
 
 
 def load():
-    load_dotenv()
     S3_TRAIN_FILE = os.getenv("S3_TRAIN_FILE")
 
     data_file = ".cache/train.csv"
