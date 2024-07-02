@@ -1,0 +1,28 @@
+
+= Red Hat OpenShift AI: Taste of Training
+
+
+== Cats and Dogs Scenario
+
+1. Download the data from https://www.microsoft.com/en-us/download/details.aspx?id=54765
+
+or `!curl -O https://download.microsoft.com/download/3/E/1/3E1C3F21-ECDB-4869-8368-6DEBA77B919F/kagglecatsanddogs_5340.zip`
+
+2. Upload the data to an S3 bucket:
+
+
+
+
+== Notes
+
+Datasets for predictive AI example:
+
+- https://www.kaggle.com/datasets/rabieelkharoua/students-performance-dataset/code
+- https://www.kaggle.com/datasets/rabieelkharoua/predict-pet-adoption-status-dataset/code
+- https://www.kaggle.com/datasets/arashnic/book-recommendation-dataset
+- https://www.kaggle.com/competitions/playground-series-s4e6/data
+- https://archive.ics.uci.edu/dataset/697/predict+students+dropout+and+academic+success
+
+== Notebooks
+
+- https://www.kaggle.com/code/juwonoindo/book-recommendation-system-cbf-and-cf#==%3E-Model-Evaluation-with-Content-Based-Filtering
