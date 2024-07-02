@@ -3,7 +3,7 @@ import os
 from typing import Union
 from PIL import Image
 import torch
-from cats_dogs.preprocessing import transform
+from preprocessing import transform
 
 
 CLASS_NAMES = ['Cat', 'Dog']
@@ -24,4 +24,4 @@ def predict(image_path: Union[str, os.PathLike], model: torch.nn.Module):
 
     # Map the prediction to the class label
     predicted_class = CLASS_NAMES[preds.item()]
-    print(predicted_class)
+    return predicted_class

@@ -28,6 +28,8 @@ def preprocess(data_dir: Union[str, os.PathLike]):
     Returns a tuple of 3 elements.
     (train data loader, validation data loader, dataset)
     """
+    # Delete corrupt JPG files
+    delete_corrupted(data_dir)
 
     # Create the dataset
     dataset = datasets.ImageFolder(root=data_dir, transform=transform)
@@ -54,13 +56,12 @@ def delete_corrupted(dataset_dir: Union[str, os.PathLike]):
     num_skipped = 0
     for dir_name in ("Cat", "Dog"):
         dir_path = Path(dataset_dir) / dir_name
-        for filename in dir_path.glob("*.jpg"):
-            fpath = dir_path / filename
-            with open(fpath, "rb") as f:
+        for filepath in dir_path.glob("*.jpg"):
+            with open(filepath, "rb") as f:
                 is_jfif = b"JFIF" in f.peek(10)
 
             if not is_jfif:
                 num_skipped += 1
-                os.remove(fpath)
+                os.remove(filepath)
 
     print(f"Deleted {num_skipped} corrupted images.")
