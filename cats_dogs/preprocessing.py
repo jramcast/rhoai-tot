@@ -7,6 +7,10 @@ from torch.utils.data import DataLoader
 from torchvision import datasets, transforms
 
 
+# Ensure reproducibility in data splits and weights
+torch.manual_seed(0)
+
+
 # Define transformations to be applied to each image
 transform = transforms.Compose(
     [
@@ -34,12 +38,18 @@ def preprocess(data_dir: Union[str, os.PathLike]):
     # Create the dataset
     dataset = datasets.ImageFolder(root=data_dir, transform=transform)
 
-    # Split the dataset into training and validation sets
-    train_size = int(0.8 * len(dataset))
-    val_size = len(dataset) - train_size
+    # Split the dataset into training, validation, and test sets
+    #train_size = int(0.7 * len(dataset))
+    #val_size = len(dataset) - train_size 
+
     train_dataset, val_dataset = torch.utils.data.random_split(
-        dataset, [train_size, val_size]
+        dataset, [0.7, 0.3]
     )
+
+    val_dataset, test_dataset = torch.utils.data.random_split(
+        val_dataset, [0.5, 0.5]
+    )
+
 
     # Create data loaders
     train_loader = DataLoader(
@@ -48,8 +58,11 @@ def preprocess(data_dir: Union[str, os.PathLike]):
     val_loader = DataLoader(
         val_dataset, batch_size=32, shuffle=False, num_workers=4
     )
+    test_loader = DataLoader(
+        test_dataset, batch_size=32, shuffle=False, num_workers=4
+    )
 
-    return train_loader, val_loader, dataset
+    return train_loader, val_loader, test_loader, dataset
 
 
 def delete_corrupted(dataset_dir: Union[str, os.PathLike]):
