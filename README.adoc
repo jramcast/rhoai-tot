@@ -93,6 +93,9 @@ c. Wait until the pipeline finishes.
 d. You can now deploy another model with the results of the pipeline.
 
 
+== InstructLab Scenario
+
+
 
 
 == Notes
