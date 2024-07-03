@@ -14,9 +14,7 @@
           "op": "execute-notebook-node",
           "app_data": {
             "component_parameters": {
-              "pipeline_parameters": [
-                "s3_data_file"
-              ],
+              "pipeline_parameters": [],
               "dependencies": [
                 "test_cat.jpg",
                 "collection.py",
@@ -33,22 +31,22 @@
               "kubernetes_secrets": [
                 {
                   "env_var": "AWS_ACCESS_KEY_ID",
-                  "name": "aws-connection-minio",
+                  "name": "aws-connection-data",
                   "key": "AWS_ACCESS_KEY_ID"
                 },
                 {
                   "env_var": "AWS_SECRET_ACCESS_KEY",
-                  "name": "aws-connection-minio",
+                  "name": "aws-connection-data",
                   "key": "AWS_SECRET_ACCESS_KEY"
                 },
                 {
                   "env_var": "AWS_S3_ENDPOINT",
-                  "name": "aws-connection-minio",
+                  "name": "aws-connection-data",
                   "key": "AWS_S3_ENDPOINT"
                 },
                 {
                   "env_var": "AWS_S3_BUCKET",
-                  "name": "aws-connection-minio",
+                  "name": "aws-connection-data",
                   "key": "AWS_S3_BUCKET"
                 }
               ],
@@ -69,7 +67,7 @@
             "label": "",
             "ui_data": {
               "label": "train.ipynb",
-              "image": "/notebook/jairamir-rhoai-webinar/cats-vs-dogs/static/elyra/notebook.svg",
+              "image": "/notebook/jairamir-webinar-cats-dogs/cats-dogs/static/elyra/notebook.svg",
               "x_pos": 27,
               "y_pos": 312,
               "description": "Run notebook file"
@@ -139,7 +137,7 @@
             "label": "",
             "ui_data": {
               "label": "model_upload.ipynb",
-              "image": "/notebook/jairamir-rhoai-webinar/cats-vs-dogs/static/elyra/notebook.svg",
+              "image": "/notebook/jairamir-webinar-cats-dogs/cats-dogs/static/elyra/notebook.svg",
               "x_pos": 521,
               "y_pos": 309,
               "description": "Run notebook file"
@@ -187,10 +185,7 @@
           "op": "execute-notebook-node",
           "app_data": {
             "component_parameters": {
-              "pipeline_parameters": [
-                "s3_data_file",
-                "eval_accuracy_threshold"
-              ],
+              "pipeline_parameters": [],
               "dependencies": [
                 "collection.py",
                 "preprocessing.py"
@@ -219,7 +214,7 @@
             "label": "",
             "ui_data": {
               "label": "evaluate.ipynb",
-              "image": "/notebook/jairamir-rhoai-webinar/cats-vs-dogs/static/elyra/notebook.svg",
+              "image": "/notebook/jairamir-webinar-cats-dogs/cats-dogs/static/elyra/notebook.svg",
               "x_pos": 282,
               "y_pos": 311,
               "description": "Run notebook file"
@@ -273,33 +268,33 @@
           "runtime": "Data Science Pipelines",
           "pipeline_defaults": {
             "kubernetes_shared_mem_size": {},
-            "kubernetes_pod_labels": [],
-            "kubernetes_tolerations": [],
-            "mounted_volumes": [],
             "kubernetes_pod_annotations": [],
+            "kubernetes_tolerations": [],
+            "kubernetes_pod_labels": [],
+            "mounted_volumes": [],
+            "env_vars": [],
             "kubernetes_secrets": [
               {
                 "env_var": "AWS_ACCESS_KEY_ID",
-                "name": "aws-connection-minio",
+                "name": "aws-connection-data",
                 "key": "AWS_ACCESS_KEY_ID"
               },
               {
                 "env_var": "AWS_SECRET_ACCESS_KEY",
-                "name": "aws-connection-minio",
+                "name": "aws-connection-data",
                 "key": "AWS_SECRET_ACCESS_KEY"
               },
               {
                 "env_var": "AWS_S3_ENDPOINT",
-                "name": "aws-connection-minio",
+                "name": "aws-connection-data",
                 "key": "AWS_S3_ENDPOINT"
               },
               {
                 "env_var": "AWS_S3_BUCKET",
-                "name": "aws-connection-minio",
+                "name": "aws-connection-data",
                 "key": "AWS_S3_BUCKET"
               }
-            ],
-            "env_vars": []
+            ]
           },
           "pipeline_parameters": [
             {
