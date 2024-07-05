@@ -96,6 +96,73 @@ d. You can now deploy another model with the results of the pipeline.
 == InstructLab Scenario
 
 
+=== Setup Demo cluster
+
+1. Add the notebook image: quay.io/jramcast/pytorch-instructlab-wb:0.17.1-python-3.9
+
+1. Create an Instruct Large workbench with GPU.
+You should add 100GB of storage.
+
+Modify `bootstrap` ApplicationSet in `openshift-gitops` project.
+Point `ic-rhoai-configuration` to https://github.com/jramcast/insurance-claim-processing
+
+
+
+=== Instructions
+
+1. Create a CUDA Large workbench with GPU.
+You should add 100GB of storage.
+
+1. Install with `instructlab/install.sh`
+
+2. Clone repositories:
+* https://github.com/jramcast/rhoai-tot
+* https://github.com/instructlab/taxonomy
+
+3. Generate ilab config:
+
+----
+ilab config init
+----
+
+4. Download model:
+
+----
+ilab model download
+----
+
+
+----
+ilab sysinfo
+----
+
+----
+ilab modoel train --device=cuda
+----
+
+
+=== Serving
+
+
+SWAGGER: https://my-llm-predictor-instructlab.apps.cluster-pdskm.sandbox134.opentlc.com/docs
+
+
+Consume model after serving:
+----
+curl -k -X 'POST' \
+  'https://my-llm-predictor-instructlab.apps.cluster-pdskm.sandbox134.opentlc.com/v1/chat/completions' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "model": "/mnt/models/ggml-model-f16.gguf",
+  "messages": [
+    {
+      "role": "user",
+      "content": "What is the capital of France?"
+    }
+  ]
+}'
+----
 
 
 == Notes

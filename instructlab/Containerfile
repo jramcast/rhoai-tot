@@ -1,0 +1,11 @@
+FROM quay.io/modh/cuda-notebooks:cuda-jupyter-minimal-ubi9-python-3.9-20240703
+
+RUN pip install --no-cache-dir pip==24.1.1 && \
+    pip install \
+        --no-cache-dir \
+        -C cmake.args="-DLLAMA_CUDA=on" \
+        -C cmake.args="-DLLAMA_NATIVE=off" \
+        instructlab==0.17.1 && \
+    pip install --no-cache-dir --force-reinstall \
+        llama_cpp_python==0.2.79 -C cmake.args="-DLLAMA_CUDA=on" && \
+    pip install --no-cache-dir 'numpy>=1.26.4,<2.0.0' nvitop==1.3.2
