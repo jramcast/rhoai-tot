@@ -32,20 +32,19 @@
               "mounted_volumes": [
                 {
                   "path": "generated",
-                  "pvc_name": "pipelines-pvc",
-                  "sub_path": "generated",
+                  "pvc_name": "pipelines-generated",
                   "read_only": false
                 }
               ],
               "filename": "generate.ipynb",
-              "runtime_image": "quay.io/jramcast/pytorch-instructlab-runtime:0.17.1-python-3.9-2",
+              "runtime_image": "quay.io/jramcast/pytorch-instructlab-runtime:0.17.1-python-3.9-3",
               "gpu": 1,
               "gpu_vendor": "nvidia.com/gpu"
             },
             "label": "",
             "ui_data": {
               "label": "generate.ipynb",
-              "image": "/notebook/aasdf/llm-wb/static/elyra/notebook.svg",
+              "image": "/notebook/aasdf/asdf/static/elyra/notebook.svg",
               "x_pos": 114,
               "y_pos": 150,
               "description": "Run notebook file"
@@ -104,26 +103,24 @@
               "mounted_volumes": [
                 {
                   "path": "models",
-                  "pvc_name": "pipelines-pvc",
-                  "sub_path": "models",
+                  "pvc_name": "pipelines-models",
                   "read_only": false
                 },
                 {
                   "path": "generated",
-                  "pvc_name": "pipelines-pvc",
-                  "sub_path": "generated",
+                  "pvc_name": "pipelines-generated",
                   "read_only": false
                 }
               ],
               "filename": "train.ipynb",
-              "runtime_image": "quay.io/jramcast/pytorch-instructlab-runtime:0.17.1-python-3.9-2",
+              "runtime_image": "quay.io/jramcast/pytorch-instructlab-runtime:0.17.1-python-3.9-3",
               "gpu": 1,
               "gpu_vendor": "nvidia.com/gpu"
             },
             "label": "",
             "ui_data": {
               "label": "train.ipynb",
-              "image": "/notebook/aasdf/llm-wb/static/elyra/notebook.svg",
+              "image": "/notebook/aasdf/asdf/static/elyra/notebook.svg",
               "x_pos": 375,
               "y_pos": 152,
               "description": "Run notebook file"
@@ -217,18 +214,17 @@
               "mounted_volumes": [
                 {
                   "path": "models",
-                  "pvc_name": "pipelines-pvc",
-                  "sub_path": "models",
+                  "pvc_name": "pipelines-models",
                   "read_only": false
                 }
               ],
               "filename": "upload-model.ipynb",
-              "runtime_image": "quay.io/modh/runtime-images@sha256:1711dfaeb5fea393ebe09dc957fcf36720ff2859c3afc47fe4e2110b68bc918f"
+              "runtime_image": "quay.io/modh/runtime-images@sha256:e0d97147aa6ea050cea12b9759faf4c0e537b043b652cab4ffddc5c2caac23cc"
             },
             "label": "",
             "ui_data": {
               "label": "upload-model.ipynb",
-              "image": "/notebook/aasdf/llm-wb/static/elyra/notebook.svg",
+              "image": "/notebook/aasdf/asdf/static/elyra/notebook.svg",
               "x_pos": 610,
               "y_pos": 153,
               "description": "Run notebook file"
@@ -281,13 +277,13 @@
           "name": "untitled",
           "runtime": "Data Science Pipelines",
           "pipeline_defaults": {
-            "kubernetes_pod_labels": [],
-            "kubernetes_tolerations": [],
             "kubernetes_shared_mem_size": {},
-            "kubernetes_pod_annotations": [],
+            "kubernetes_tolerations": [],
+            "kubernetes_pod_labels": [],
             "mounted_volumes": [],
-            "env_vars": [],
-            "kubernetes_secrets": []
+            "kubernetes_pod_annotations": [],
+            "kubernetes_secrets": [],
+            "env_vars": []
           }
         }
       },
