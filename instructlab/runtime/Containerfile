@@ -1,4 +1,4 @@
-FROM quay.io/modh/cuda-notebooks:cuda-jupyter-minimal-ubi9-python-3.9-20240703
+FROM quay.io/modh/runtime-images:runtime-cuda-tensorflow-ubi9-python-3.9-20240705
 
 RUN pip install --no-cache-dir pip==24.1.1 && \
     pip install \
