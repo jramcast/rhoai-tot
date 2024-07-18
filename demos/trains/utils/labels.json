@@ -1,0 +1,16 @@
+{
+    "SpeedLimit": {
+        "label_id": 0,
+        "children": {
+            "SpeedLimit_30": {"path": "images/30-lego.png", "bbox_w": "247", "bbox_h": "247"},
+            "SpeedLimit_50": {"path": "images/50-lego.png", "bbox_w": "236", "bbox_h": "553"}
+        }
+    },
+    "DangerAhead": {
+        "label_id": 1,
+        "children": {
+            "BewareChildren": {"path": "images/children-lego.png", "bbox_w": "359", "bbox_h": "330"},
+            "Workers": {"path": "images/worker-lego.png", "bbox_w": "356", "bbox_h": "316"}
+        }
+    }
+}

@@ -1,0 +1,412 @@
+{
+  "doc_type": "pipeline",
+  "version": "3.0",
+  "json_schema": "http://api.dataplatform.ibm.com/schemas/common-pipeline/pipeline-flow/pipeline-flow-v3-schema.json",
+  "id": "elyra-auto-generated-pipeline",
+  "primary_pipeline": "primary",
+  "pipelines": [
+    {
+      "id": "primary",
+      "nodes": [
+        {
+          "id": "82663ea6-219c-4bdd-9a88-eb79b58a027e",
+          "type": "execution_node",
+          "op": "execute-notebook-node",
+          "app_data": {
+            "component_parameters": {
+              "pipeline_parameters": [],
+              "dependencies": [
+                "utils/*"
+              ],
+              "include_subdirectories": false,
+              "outputs": [
+                "dataset.tar.gz"
+              ],
+              "env_vars": [],
+              "kubernetes_pod_annotations": [],
+              "kubernetes_pod_labels": [],
+              "kubernetes_secrets": [],
+              "kubernetes_shared_mem_size": {},
+              "kubernetes_tolerations": [],
+              "mounted_volumes": [],
+              "filename": "labeling-extraction.ipynb",
+              "cpu_limit": 2,
+              "memory_limit": 2,
+              "cpu": 1,
+              "memory": 1
+            },
+            "label": "",
+            "ui_data": {
+              "label": "labeling-extraction.ipynb",
+              "image": "/notebook/test/myworkbench/static/elyra/notebook.svg",
+              "x_pos": 163,
+              "y_pos": 190,
+              "description": "Run notebook file"
+            }
+          },
+          "inputs": [
+            {
+              "id": "inPort",
+              "app_data": {
+                "ui_data": {
+                  "cardinality": {
+                    "min": 0,
+                    "max": -1
+                  },
+                  "label": "Input Port"
+                }
+              }
+            }
+          ],
+          "outputs": [
+            {
+              "id": "outPort",
+              "app_data": {
+                "ui_data": {
+                  "cardinality": {
+                    "min": 0,
+                    "max": -1
+                  },
+                  "label": "Output Port"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "4b00a70d-c0a6-4526-a4e7-be231283054f",
+          "type": "execution_node",
+          "op": "execute-notebook-node",
+          "app_data": {
+            "component_parameters": {
+              "pipeline_parameters": [],
+              "dependencies": [
+                "utils/*"
+              ],
+              "include_subdirectories": true,
+              "outputs": [
+                "dataset-full.tar.gz"
+              ],
+              "env_vars": [],
+              "kubernetes_pod_annotations": [],
+              "kubernetes_pod_labels": [],
+              "kubernetes_secrets": [],
+              "kubernetes_shared_mem_size": {},
+              "kubernetes_tolerations": [],
+              "mounted_volumes": [],
+              "filename": "synthetic-data.ipynb",
+              "cpu": 1,
+              "cpu_limit": 2,
+              "memory_limit": 2,
+              "memory": 1
+            },
+            "label": "",
+            "ui_data": {
+              "label": "synthetic-data.ipynb",
+              "image": "/notebook/test/myworkbench/static/elyra/notebook.svg",
+              "x_pos": 370,
+              "y_pos": 258,
+              "description": "Run notebook file"
+            }
+          },
+          "inputs": [
+            {
+              "id": "inPort",
+              "app_data": {
+                "ui_data": {
+                  "cardinality": {
+                    "min": 0,
+                    "max": -1
+                  },
+                  "label": "Input Port"
+                }
+              },
+              "links": [
+                {
+                  "id": "6d40e8a6-6a23-4e29-960d-c24a26ed846b",
+                  "node_id_ref": "82663ea6-219c-4bdd-9a88-eb79b58a027e",
+                  "port_id_ref": "outPort"
+                }
+              ]
+            }
+          ],
+          "outputs": [
+            {
+              "id": "outPort",
+              "app_data": {
+                "ui_data": {
+                  "cardinality": {
+                    "min": 0,
+                    "max": -1
+                  },
+                  "label": "Output Port"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "3018798c-0f86-4006-a7f2-07c42a6a5cb8",
+          "type": "execution_node",
+          "op": "execute-notebook-node",
+          "app_data": {
+            "component_parameters": {
+              "pipeline_parameters": [
+                "epochs"
+              ],
+              "dependencies": [
+                "utils/*"
+              ],
+              "include_subdirectories": false,
+              "outputs": [],
+              "env_vars": [],
+              "kubernetes_pod_annotations": [],
+              "kubernetes_pod_labels": [],
+              "kubernetes_secrets": [],
+              "kubernetes_shared_mem_size": {},
+              "kubernetes_tolerations": [],
+              "mounted_volumes": [
+                {
+                  "path": "/dev/shm",
+                  "pvc_name": "shared-memory",
+                  "read_only": false
+                }
+              ],
+              "filename": "transfer-learning.ipynb",
+              "memory": 4,
+              "memory_limit": 8
+            },
+            "label": "",
+            "ui_data": {
+              "label": "transfer-learning.ipynb",
+              "image": "/notebook/test/myworkbench/static/elyra/notebook.svg",
+              "x_pos": 585,
+              "y_pos": 324,
+              "description": "Run notebook file"
+            }
+          },
+          "inputs": [
+            {
+              "id": "inPort",
+              "app_data": {
+                "ui_data": {
+                  "cardinality": {
+                    "min": 0,
+                    "max": -1
+                  },
+                  "label": "Input Port"
+                }
+              },
+              "links": [
+                {
+                  "id": "0ea5a48a-0d46-4324-815c-d2960f14978a",
+                  "node_id_ref": "4b00a70d-c0a6-4526-a4e7-be231283054f",
+                  "port_id_ref": "outPort"
+                }
+              ]
+            }
+          ],
+          "outputs": [
+            {
+              "id": "outPort",
+              "app_data": {
+                "ui_data": {
+                  "cardinality": {
+                    "min": 0,
+                    "max": -1
+                  },
+                  "label": "Output Port"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "e6dfa2a2-ddda-455c-aaf4-fe54d2800f06",
+          "type": "execution_node",
+          "op": "execute-notebook-node",
+          "app_data": {
+            "component_parameters": {
+              "dependencies": [
+                "utils/*"
+              ],
+              "include_subdirectories": false,
+              "outputs": [],
+              "env_vars": [],
+              "kubernetes_pod_annotations": [],
+              "kubernetes_pod_labels": [],
+              "kubernetes_secrets": [],
+              "kubernetes_shared_mem_size": {},
+              "kubernetes_tolerations": [
+                {
+                  "key": "nvidia.com/gpu",
+                  "operator": "Exists",
+                  "effect": "NoSchedule"
+                }
+              ],
+              "mounted_volumes": [
+                {
+                  "path": "/dev/shm",
+                  "pvc_name": "shared-memory",
+                  "read_only": false
+                }
+              ],
+              "filename": "comparaison.ipynb",
+              "memory": 4,
+              "memory_limit": 8,
+              "gpu": 1
+            },
+            "label": "",
+            "ui_data": {
+              "label": "comparaison.ipynb",
+              "image": "/notebook/test/myworkbench/static/elyra/notebook.svg",
+              "x_pos": 820,
+              "y_pos": 389,
+              "description": "Run notebook file"
+            }
+          },
+          "inputs": [
+            {
+              "id": "inPort",
+              "app_data": {
+                "ui_data": {
+                  "cardinality": {
+                    "min": 0,
+                    "max": -1
+                  },
+                  "label": "Input Port"
+                }
+              }
+            }
+          ],
+          "outputs": [
+            {
+              "id": "outPort",
+              "app_data": {
+                "ui_data": {
+                  "cardinality": {
+                    "min": 0,
+                    "max": -1
+                  },
+                  "label": "Output Port"
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "app_data": {
+        "ui_data": {
+          "comments": [
+            {
+              "id": "c80ad754-9c37-44ed-92bb-559e9749d7ff",
+              "x_pos": 800,
+              "y_pos": 267,
+              "width": 175,
+              "height": 44,
+              "content": "Compare the base model with the new one",
+              "associated_id_refs": [
+                {
+                  "id": "f5395654-bef5-4fde-a9d9-1f8164631663",
+                  "node_ref": "e6dfa2a2-ddda-455c-aaf4-fe54d2800f06"
+                }
+              ]
+            },
+            {
+              "id": "6de7649d-f320-49eb-bbac-783805c5731f",
+              "x_pos": 580,
+              "y_pos": 194,
+              "width": 175,
+              "height": 42,
+              "content": "Fine tune the model ",
+              "associated_id_refs": [
+                {
+                  "id": "9504e529-965b-4e32-94c7-956fa6794510",
+                  "node_ref": "3018798c-0f86-4006-a7f2-07c42a6a5cb8"
+                }
+              ]
+            },
+            {
+              "id": "61a3991f-b177-4c46-b531-ef1bb2464693",
+              "x_pos": 366,
+              "y_pos": 106,
+              "width": 175,
+              "height": 44,
+              "content": "Generate synthetic data to add more samples",
+              "associated_id_refs": [
+                {
+                  "id": "3673027d-b56a-4264-9332-784dafd0b74b",
+                  "node_ref": "4b00a70d-c0a6-4526-a4e7-be231283054f"
+                }
+              ]
+            },
+            {
+              "id": "4b0db621-99fb-4979-b551-9db7a3283caa",
+              "x_pos": 154,
+              "y_pos": 57,
+              "width": 175,
+              "height": 44,
+              "content": "Extract the images and their annotations",
+              "associated_id_refs": [
+                {
+                  "id": "ba0dad0f-9b3c-4c44-a84d-c9b5c3667f8e",
+                  "node_ref": "82663ea6-219c-4bdd-9a88-eb79b58a027e"
+                }
+              ]
+            }
+          ]
+        },
+        "version": 8,
+        "runtime_type": "KUBEFLOW_PIPELINES",
+        "properties": {
+          "name": "traffic-signs",
+          "runtime": "Data Science Pipelines",
+          "pipeline_defaults": {
+            "kubernetes_shared_mem_size": {},
+            "mounted_volumes": [],
+            "kubernetes_tolerations": [],
+            "kubernetes_pod_annotations": [],
+            "kubernetes_pod_labels": [],
+            "env_vars": [],
+            "kubernetes_secrets": [
+              {
+                "env_var": "AWS_ACCESS_KEY_ID",
+                "name": "aws-connection-pipelines",
+                "key": "AWS_ACCESS_KEY_ID"
+              },
+              {
+                "env_var": "AWS_SECRET_ACCESS_KEY",
+                "name": "aws-connection-pipelines",
+                "key": "AWS_SECRET_ACCESS_KEY"
+              },
+              {
+                "env_var": "AWS_S3_ENDPOINT",
+                "name": "aws-connection-pipelines",
+                "key": "AWS_S3_ENDPOINT"
+              },
+              {
+                "env_var": "AWS_S3_BUCKET",
+                "name": "aws-connection-pipelines",
+                "key": "AWS_S3_BUCKET"
+              }
+            ],
+            "runtime_image": "quay.io/demo-ai-edge-crazy-train/activity-pipeline-runtime:v1"
+          },
+          "pipeline_parameters": [
+            {
+              "name": "epochs",
+              "description": "",
+              "default_value": {
+                "type": "String",
+                "value": "1"
+              },
+              "required": false
+            }
+          ]
+        }
+      },
+      "runtime_ref": ""
+    }
+  ],
+  "schemas": []
+}

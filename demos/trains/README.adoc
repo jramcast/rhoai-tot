@@ -1,0 +1,2 @@
+This demo is part of the larger _Stop the crazy train_ workshop, which covers a full-fledge solution with Edge computing, Kafka, Apache Camel, and Dev Spaces.
+
