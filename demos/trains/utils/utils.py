@@ -1,23 +1,24 @@
 import cv2
 import random
-import os
 import uuid
 import numpy as np
 
+
 def degrad_sign(img, ratio, alpha_channel):
-    hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV) # convert image to HSV color space
-    hsv = np.array(hsv, dtype = np.float64)
-    hsv[:,:,1] = hsv[:,:,1] * ratio # scale pixel values up for channel 1
-    hsv[:,:,1][hsv[:,:,1]>255]  = 255
-    hsv[:,:,2] = hsv[:,:,2] * ratio # scale pixel values up for channel 2
-    hsv[:,:,2][hsv[:,:,2]>255]  = 255
-    hsv = np.array(hsv, dtype = np.uint8)
+    hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)  # convert image to HSV color space
+    hsv = np.array(hsv, dtype=np.float64)
+    hsv[:, :, 1] = hsv[:, :, 1] * ratio  # scale pixel values up for channel 1
+    hsv[:, :, 1][hsv[:, :, 1] > 255] = 255
+    hsv[:, :, 2] = hsv[:, :, 2] * ratio  # scale pixel values up for channel 2
+    hsv[:, :, 2][hsv[:, :, 2] > 255] = 255
+    hsv = np.array(hsv, dtype=np.uint8)
     img = cv2.cvtColor(hsv, cv2.COLOR_HSV2BGR)
-    img = cv2.cvtColor(img,cv2.COLOR_BGR2BGRA)
-    random_blur = random.randint(1,3)
-    img = cv2.blur(img,(random_blur,random_blur))
-    #img[:, :, 3] = alpha_channel
+    img = cv2.cvtColor(img, cv2.COLOR_BGR2BGRA)
+    random_blur = random.randint(1, 3)
+    img = cv2.blur(img, (random_blur, random_blur))
+    # img[:, :, 3] = alpha_channel
     return img
+
 
 # Function to insert image onto frame at random coordinates and scale if necessary
 def insert_image(frame, image, x_range, y_range, traffic_size):
@@ -27,7 +28,7 @@ def insert_image(frame, image, x_range, y_range, traffic_size):
 
     # Randomly choose a scale factor
     scale_factor = random.uniform(0.1, 0.3)  # You can adjust this range as needed
-    
+
     # Scale the image
     scaled_width = int(max_width * scale_factor)
     scaled_height = int(max_height * scale_factor)
@@ -39,7 +40,7 @@ def insert_image(frame, image, x_range, y_range, traffic_size):
     # Change brightness
     ratio = random.uniform(0.7, 1.1)
     scaled_image = degrad_sign(scaled_image, ratio, alpha_channel)
-    #scaled_image = cv2.convertScaleAbs(scaled_image, alpha=1, beta=-50)
+    # scaled_image = cv2.convertScaleAbs(scaled_image, alpha=1, beta=-50)
 
     # Randomly choose coordinates within the frame
     x = random.randint(0, x_range - scaled_width)
@@ -47,9 +48,11 @@ def insert_image(frame, image, x_range, y_range, traffic_size):
 
     # Blend the scaled image onto the frame using alpha channel
     for c in range(0, 3):
-        frame[y:y+scaled_height, x:x+scaled_width, c] = \
-            alpha_channel * scaled_image[:, :, c] + \
-            (1 - alpha_channel) * frame[y:y+scaled_height, x:x+scaled_width, c]
+        frame[y : y + scaled_height, x : x + scaled_width, c] = (
+            alpha_channel * scaled_image[:, :, c]
+            + (1 - alpha_channel)
+            * frame[y : y + scaled_height, x : x + scaled_width, c]
+        )
 
     # Draw bounding box around the inserted image
     # cv2.rectangle(frame, (x, y), (x + scaled_width, y + scaled_height), (0, 255, 0), 2)
@@ -63,15 +66,16 @@ def insert_image(frame, image, x_range, y_range, traffic_size):
 
     return frame, (rect_x, rect_y, rect_w, rect_h)
 
+
 def to_yolo_format(image_width, image_height, box):
     """
     Convert bounding box coordinates to YOLO format.
-    
+
     Args:
         image_width (int): Width of the image.
         image_height (int): Height of the image.
         box (tuple): Bounding box coordinates in format (x, y, width, height).
-    
+
     Returns:
         tuple: Normalized YOLO format coordinates (x_center, y_center, width, height).
     """
@@ -86,6 +90,7 @@ def to_yolo_format(image_width, image_height, box):
     height /= image_height
 
     return x_center, y_center, width, height
+
 
 def extract_random_frames(video_path, num_frames):
     """
@@ -123,6 +128,7 @@ def extract_random_frames(video_path, num_frames):
     cap.release()
     return frames
 
+
 def add_to_yolo_dataset(frame, split, label_id, label_name, yolo_format, dataset_path):
     x, y, w, h = yolo_format
     uid = str(uuid.uuid4())
@@ -132,12 +138,16 @@ def add_to_yolo_dataset(frame, split, label_id, label_name, yolo_format, dataset
     label_name = label_name + "_" + uid + ".txt"
     cv2.imwrite(tar_images + img_name, frame)
     label_line = f"{label_id} {x:.6f} {y:.6f} {w:.6f} {h:.6f}"
-    with open(tar_label + label_name, 'w') as f:
+    with open(tar_label + label_name, "w") as f:
         f.write(label_line)
 
-def determine_split(i, nb_data):
-    if nb_data < 5:
+
+def determine_split(i, num_samples):
+    if i / num_samples < 0.6:
         split = "train"
+    elif i / num_samples < 0.8:
+        split = "val"
     else:
-        split = "train" if i / nb_data < 0.8 else "val"
+        split = "test"
+
     return split
