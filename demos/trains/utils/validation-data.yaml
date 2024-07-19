@@ -1,6 +1,0 @@
-names:
-  0: SpeedLimit
-  1: DangerAhead
-path: ../intelligent-train-dataset/
-val: val/images
-train: images/train
