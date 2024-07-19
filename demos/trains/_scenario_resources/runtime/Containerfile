@@ -1,0 +1,3 @@
+FROM quay.io/modh/runtime-images:runtime-pytorch-ubi9-python-3.9-2023a-20240717
+
+RUN pip install --no-cache-dir ultralytics==8.2.60 opencv-python

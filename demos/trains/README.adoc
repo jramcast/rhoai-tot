@@ -9,7 +9,7 @@ This demo is part of the larger _Stop the crazy train_ workshop, which covers a 
 * Red{nbsp}OpenShift AI(RHOAI){nbsp}2.8 installed on your cluster.
 * Recommended: Worker nodes with GPUs to speed up model training.
 * Custom workbench container images:
-    - https://quay.io/repository/demo-ai-edge-crazy-train/workbench:ultralytics
+    - quay.io/jramcast/rhoai-ultralytics-workbench:8.2.60
     - https://quay.io/repository/demo-ai-edge-crazy-train/workbench:minimal
 
 ## Steps
@@ -28,8 +28,10 @@ Make sure you add this resource to the `trains` project.
 4. Upload the `_scenario_resources/dataset.tar.gz` file to your `data` bucket.
 This is to simulate an scenario where a peer data engineer stores the dataset in an S3 bucket, ready to be used by data scientists.
 
+5. Upload the `_scenario_resources/base_model.pt` file to your `data` bucket.
+This is to simulate an scenario where a peer data engineer stores the dataset in an S3 bucket, ready to be used by data scientists.
 
-5. Create three data connections.
+6. Create three data connections.
 Use the `minio-api` URL as the `Endpoint`.
 Use the credentials that you defined in the Minio YAML (by default `minio` / `minio123`) as the access key and secret key, respectively.
 Use `any` as the region.
@@ -45,5 +47,5 @@ c. `model-registry`: to connect to the `model-registry` bucket.
 
 8. Open the workbench.
 In the JupyterLab UI, clone the https://github.com/jramcast/rhoai-tot repository.
-Navigate to `rhoai-tot/cats_dogs`.
+Navigate to `rhoai-tot/demos/trains`.
 

@@ -1,0 +1,3 @@
+FROM quay.io/modh/odh-pytorch-notebook:v2-20240705
+
+RUN pip install --no-cache-dir ultralytics==8.2.60 nvitop
