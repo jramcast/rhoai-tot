@@ -74,9 +74,7 @@
           "app_data": {
             "component_parameters": {
               "dependencies": [
-                "utils/utils.py",
-                "utils/video/video1.mp4",
-                "utils/labels.json"
+                "utils/*"
               ],
               "include_subdirectories": true,
               "outputs": [
