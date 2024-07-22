@@ -33,7 +33,7 @@
             "ui_data": {
               "label": "1_load_dataset.ipynb",
               "image": "/notebook/trains/trains-wb/static/elyra/notebook.svg",
-              "x_pos": 18,
+              "x_pos": 17,
               "y_pos": 180,
               "description": "Run notebook file"
             }
@@ -291,31 +291,31 @@
           "name": "trains",
           "runtime": "Data Science Pipelines",
           "pipeline_defaults": {
-            "mounted_volumes": [],
-            "kubernetes_pod_annotations": [],
-            "kubernetes_shared_mem_size": {},
             "kubernetes_tolerations": [],
+            "kubernetes_pod_annotations": [],
             "kubernetes_pod_labels": [],
+            "mounted_volumes": [],
+            "kubernetes_shared_mem_size": {},
             "env_vars": [],
             "kubernetes_secrets": [
               {
                 "env_var": "AWS_ACCESS_KEY_ID",
-                "name": "aws-connection-data",
+                "name": "aws-connection-data-and-models",
                 "key": "AWS_ACCESS_KEY_ID"
               },
               {
                 "env_var": "AWS_SECRET_ACCESS_KEY",
-                "name": "aws-connection-data",
+                "name": "aws-connection-data-and-models",
                 "key": "AWS_SECRET_ACCESS_KEY"
               },
               {
                 "env_var": "AWS_S3_ENDPOINT",
-                "name": "aws-connection-data",
+                "name": "aws-connection-data-and-models",
                 "key": "AWS_S3_ENDPOINT"
               },
               {
                 "env_var": "AWS_S3_BUCKET",
-                "name": "aws-connection-data",
+                "name": "aws-connection-data-and-models",
                 "key": "AWS_S3_BUCKET"
               }
             ],
