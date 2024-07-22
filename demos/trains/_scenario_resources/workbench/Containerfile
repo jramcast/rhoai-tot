@@ -1,3 +1,3 @@
-FROM quay.io/modh/odh-pytorch-notebook:v2-20240705
+FROM quay.io/modh/odh-pytorch-notebook@sha256:c812c544eceeec994b04bd4f1cba8dc38e15a88637a06556a21ed26f808c4b4a
 
 RUN pip install --no-cache-dir ultralytics==8.2.60 nvitop

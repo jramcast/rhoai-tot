@@ -12,6 +12,8 @@ This demo is part of the larger _Stop the crazy train_ workshop, which covers a 
     - quay.io/jramcast/rhoai-ultralytics-workbench:8.2.60
     - https://quay.io/repository/demo-ai-edge-crazy-train/workbench:minimal
 
+You can request access to a RHOAI cluster with GPUs at https://demo.redhat.com/catalog?search=gpu+insurance&item=babylon-catalog-prod%2Fsandboxes-gpte.ocp-wksp-ai-insurance-claim.prod
+
 ## Steps
 
 1. In RHOAI, create the `trains` data science project.
@@ -49,3 +51,4 @@ c. `model-registry`: to connect to the `model-registry` bucket.
 In the JupyterLab UI, clone the https://github.com/jramcast/rhoai-tot repository.
 Navigate to `rhoai-tot/demos/trains`.
 
+9. Add a new runtime image: quay.io/demo-ai-edge-crazy-train/activity-pipeline-runtime:v1
