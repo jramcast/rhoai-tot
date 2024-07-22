@@ -1,0 +1,325 @@
+{
+  "doc_type": "pipeline",
+  "version": "3.0",
+  "json_schema": "http://api.dataplatform.ibm.com/schemas/common-pipeline/pipeline-flow/pipeline-flow-v3-schema.json",
+  "id": "elyra-auto-generated-pipeline",
+  "primary_pipeline": "primary",
+  "pipelines": [
+    {
+      "id": "primary",
+      "nodes": [
+        {
+          "id": "60d2a2fc-eedf-4c3c-8290-609350ea26b9",
+          "type": "execution_node",
+          "op": "execute-notebook-node",
+          "app_data": {
+            "component_parameters": {
+              "pipeline_parameters": [],
+              "dependencies": [
+                "test_cat.jpg",
+                "collection.py",
+                "prediction.py",
+                "preprocessing.py"
+              ],
+              "include_subdirectories": false,
+              "outputs": [
+                "model.onnx"
+              ],
+              "env_vars": [],
+              "kubernetes_pod_annotations": [],
+              "kubernetes_pod_labels": [],
+              "kubernetes_secrets": [
+                {
+                  "env_var": "AWS_ACCESS_KEY_ID",
+                  "name": "aws-connection-data",
+                  "key": "AWS_ACCESS_KEY_ID"
+                },
+                {
+                  "env_var": "AWS_SECRET_ACCESS_KEY",
+                  "name": "aws-connection-data",
+                  "key": "AWS_SECRET_ACCESS_KEY"
+                },
+                {
+                  "env_var": "AWS_S3_ENDPOINT",
+                  "name": "aws-connection-data",
+                  "key": "AWS_S3_ENDPOINT"
+                },
+                {
+                  "env_var": "AWS_S3_BUCKET",
+                  "name": "aws-connection-data",
+                  "key": "AWS_S3_BUCKET"
+                }
+              ],
+              "kubernetes_shared_mem_size": {},
+              "kubernetes_tolerations": [
+                {
+                  "key": "nvidia.com/gpu",
+                  "operator": "Exists",
+                  "effect": "NoSchedule"
+                }
+              ],
+              "mounted_volumes": [],
+              "filename": "train.ipynb",
+              "runtime_image": "quay.io/modh/runtime-images@sha256:ef9cc4f0dc1c0dff82c8bcdee295a5c8b8c19d297844fc209316ace315c79982",
+              "gpu": 1,
+              "gpu_vendor": "nvidia.com/gpu"
+            },
+            "label": "",
+            "ui_data": {
+              "label": "train.ipynb",
+              "image": "/notebook/jairamir-webinar-cats-dogs/cats-dogs/static/elyra/notebook.svg",
+              "x_pos": 27,
+              "y_pos": 312,
+              "description": "Run notebook file"
+            }
+          },
+          "inputs": [
+            {
+              "id": "inPort",
+              "app_data": {
+                "ui_data": {
+                  "cardinality": {
+                    "min": 0,
+                    "max": -1
+                  },
+                  "label": "Input Port"
+                }
+              }
+            }
+          ],
+          "outputs": [
+            {
+              "id": "outPort",
+              "app_data": {
+                "ui_data": {
+                  "cardinality": {
+                    "min": 0,
+                    "max": -1
+                  },
+                  "label": "Output Port"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "24d0ad0f-47f4-4031-9192-ece2cd0c4c4e",
+          "type": "execution_node",
+          "op": "execute-notebook-node",
+          "app_data": {
+            "component_parameters": {
+              "dependencies": [],
+              "include_subdirectories": false,
+              "outputs": [],
+              "env_vars": [
+                {
+                  "env_var": "AWS_ACCESS_KEY_ID"
+                },
+                {
+                  "env_var": "AWS_SECRET_ACCESS_KEY"
+                },
+                {
+                  "env_var": "AWS_S3_ENDPOINT"
+                },
+                {
+                  "env_var": "AWS_S3_BUCKET"
+                }
+              ],
+              "kubernetes_pod_annotations": [],
+              "kubernetes_pod_labels": [],
+              "kubernetes_secrets": [],
+              "kubernetes_shared_mem_size": {},
+              "kubernetes_tolerations": [],
+              "mounted_volumes": [],
+              "filename": "model_upload.ipynb",
+              "runtime_image": "quay.io/modh/runtime-images@sha256:4e3bac6151402e97e79711e262b396eb515e70ca9217a48103a6cfb96a99fde2"
+            },
+            "label": "",
+            "ui_data": {
+              "label": "model_upload.ipynb",
+              "image": "/notebook/jairamir-webinar-cats-dogs/cats-dogs/static/elyra/notebook.svg",
+              "x_pos": 521,
+              "y_pos": 309,
+              "description": "Run notebook file"
+            }
+          },
+          "inputs": [
+            {
+              "id": "inPort",
+              "app_data": {
+                "ui_data": {
+                  "cardinality": {
+                    "min": 0,
+                    "max": -1
+                  },
+                  "label": "Input Port"
+                }
+              },
+              "links": [
+                {
+                  "id": "446c576e-92d2-498c-9294-35adf341260e",
+                  "node_id_ref": "08eb213c-2bdf-4b3b-b602-3d1199fe03d0",
+                  "port_id_ref": "outPort"
+                }
+              ]
+            }
+          ],
+          "outputs": [
+            {
+              "id": "outPort",
+              "app_data": {
+                "ui_data": {
+                  "cardinality": {
+                    "min": 0,
+                    "max": -1
+                  },
+                  "label": "Output Port"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "08eb213c-2bdf-4b3b-b602-3d1199fe03d0",
+          "type": "execution_node",
+          "op": "execute-notebook-node",
+          "app_data": {
+            "component_parameters": {
+              "pipeline_parameters": [],
+              "dependencies": [
+                "collection.py",
+                "preprocessing.py"
+              ],
+              "include_subdirectories": false,
+              "outputs": [
+                "model.onnx"
+              ],
+              "env_vars": [
+                {
+                  "env_var": "eval_accuracy_threshold"
+                },
+                {
+                  "env_var": "S3_DATA_FILE"
+                }
+              ],
+              "kubernetes_pod_annotations": [],
+              "kubernetes_pod_labels": [],
+              "kubernetes_secrets": [],
+              "kubernetes_shared_mem_size": {},
+              "kubernetes_tolerations": [],
+              "mounted_volumes": [],
+              "filename": "evaluate.ipynb",
+              "runtime_image": "quay.io/modh/runtime-images@sha256:ef9cc4f0dc1c0dff82c8bcdee295a5c8b8c19d297844fc209316ace315c79982"
+            },
+            "label": "",
+            "ui_data": {
+              "label": "evaluate.ipynb",
+              "image": "/notebook/jairamir-webinar-cats-dogs/cats-dogs/static/elyra/notebook.svg",
+              "x_pos": 282,
+              "y_pos": 311,
+              "description": "Run notebook file"
+            }
+          },
+          "inputs": [
+            {
+              "id": "inPort",
+              "app_data": {
+                "ui_data": {
+                  "cardinality": {
+                    "min": 0,
+                    "max": -1
+                  },
+                  "label": "Input Port"
+                }
+              },
+              "links": [
+                {
+                  "id": "7c53dbee-6694-4dfc-bd56-7ec16e0dbb6a",
+                  "node_id_ref": "60d2a2fc-eedf-4c3c-8290-609350ea26b9",
+                  "port_id_ref": "outPort"
+                }
+              ]
+            }
+          ],
+          "outputs": [
+            {
+              "id": "outPort",
+              "app_data": {
+                "ui_data": {
+                  "cardinality": {
+                    "min": 0,
+                    "max": -1
+                  },
+                  "label": "Output Port"
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "app_data": {
+        "ui_data": {
+          "comments": []
+        },
+        "version": 8,
+        "runtime_type": "KUBEFLOW_PIPELINES",
+        "properties": {
+          "name": "cats-vs-dogs",
+          "runtime": "Data Science Pipelines",
+          "pipeline_defaults": {
+            "kubernetes_shared_mem_size": {},
+            "kubernetes_pod_annotations": [],
+            "kubernetes_tolerations": [],
+            "kubernetes_pod_labels": [],
+            "mounted_volumes": [],
+            "env_vars": [],
+            "kubernetes_secrets": [
+              {
+                "env_var": "AWS_ACCESS_KEY_ID",
+                "name": "aws-connection-data",
+                "key": "AWS_ACCESS_KEY_ID"
+              },
+              {
+                "env_var": "AWS_SECRET_ACCESS_KEY",
+                "name": "aws-connection-data",
+                "key": "AWS_SECRET_ACCESS_KEY"
+              },
+              {
+                "env_var": "AWS_S3_ENDPOINT",
+                "name": "aws-connection-data",
+                "key": "AWS_S3_ENDPOINT"
+              },
+              {
+                "env_var": "AWS_S3_BUCKET",
+                "name": "aws-connection-data",
+                "key": "AWS_S3_BUCKET"
+              }
+            ]
+          },
+          "pipeline_parameters": [
+            {
+              "name": "s3_data_file",
+              "description": "The path to the dataset file in the S3 bucket",
+              "default_value": {
+                "type": "String",
+                "value": ""
+              },
+              "required": false
+            },
+            {
+              "name": "eval_accuracy_threshold",
+              "description": "The min accuracy value of the model on the test set",
+              "default_value": {
+                "type": "String",
+                "value": ""
+              },
+              "required": false
+            }
+          ]
+        }
+      },
+      "runtime_ref": ""
+    }
+  ],
+  "schemas": []
+}

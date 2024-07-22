@@ -1,0 +1,7 @@
+names:
+  0: SpeedLimit
+  1: DangerAhead
+path: ../dataset/
+test: images/val
+train: images/train
+val: images/val
