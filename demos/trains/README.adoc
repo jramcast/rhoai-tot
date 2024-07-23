@@ -26,20 +26,19 @@ Make sure you add this resource to the `trains` project.
 * `data-and-models`: to store the data set and models
 * `pipelines`: to store pipeline artifacts.
 
-4. Upload the `_scenario_resources/dataset.tar.gz` file to your `data` bucket.
+4. Upload the `_scenario_resources/dataset.tar.gz` file to your `data-and-models` bucket.
 This is to simulate an scenario where a peer data engineer stores the dataset in an S3 bucket, ready to be used by data scientists.
 
-5. Upload the `_scenario_resources/base_model.pt` file to your `data` bucket.
+5. Upload the `_scenario_resources/base_model.pt` file to your `data-and-models` bucket.
 This is to simulate an scenario where a peer data engineer stores the dataset in an S3 bucket, ready to be used by data scientists.
 
-6. Create three data connections.
+6. Create the data connections.
 Use the `minio-api` URL as the `Endpoint`.
 Use the credentials that you defined in the Minio YAML (by default `minio` / `minio123`) as the access key and secret key, respectively.
 Use `any` as the region.
 
-a. `data`: to connect to the `data` bucket.
+a. `data-and-models`: to connect to the `data-and-models` bucket.
 b. `pipelines`: to connect to the `pipelines` bucket.
-c. `model-registry`: to connect to the `model-registry` bucket.
 
 
 7. Create a pipeline server by using the `pipelines` data connection.
@@ -50,10 +49,10 @@ c. `model-registry`: to connect to the `model-registry` bucket.
 In the JupyterLab UI, clone the https://github.com/jramcast/rhoai-tot repository.
 Navigate to `rhoai-tot/demos/trains`.
 
-10. Add a new runtime image: quay.io/demo-ai-edge-crazy-train/activity-pipeline-runtime:v1
+10. Add a new runtime image: `quay.io/jramcast/rhoai-ultralytics-pipeline-runtime:v1`
 
 11. Run the pipeline.
 You might need to stop the workbench to get a GPU.
 
 
-quay.io/jramcast/rhoai-ultralytics-pipeline-runtime:v1
+
