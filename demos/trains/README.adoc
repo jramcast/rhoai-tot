@@ -51,3 +51,9 @@ In the JupyterLab UI, clone the https://github.com/jramcast/rhoai-tot repository
 Navigate to `rhoai-tot/demos/trains`.
 
 10. Add a new runtime image: quay.io/demo-ai-edge-crazy-train/activity-pipeline-runtime:v1
+
+11. Run the pipeline.
+You might need to stop the workbench to get a GPU.
+
+
+quay.io/jramcast/rhoai-ultralytics-pipeline-runtime:v1

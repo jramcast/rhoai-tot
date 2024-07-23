@@ -319,7 +319,7 @@
                 "key": "AWS_S3_BUCKET"
               }
             ],
-            "runtime_image": "quay.io/demo-ai-edge-crazy-train/activity-pipeline-runtime:v1"
+            "runtime_image": "quay.io/jramcast/rhoai-ultralytics-pipeline-runtime:v1"
           },
           "pipeline_parameters": [
             {
