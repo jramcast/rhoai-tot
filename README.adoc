@@ -1,18 +1,5 @@
 
 = Red Hat OpenShift AI: Taste of Training
 
+Source code for the https://www.redhat.com/en/events/webinar/operationalizing-ai-with-containerized-environments-ci-pipelines-and-model-servers[Operationalizing AI with containerized environments, CI pipelines, and model servers webinar].
 
-
-== Notes
-
-Datasets for predictive AI example:
-
-- https://www.kaggle.com/datasets/rabieelkharoua/students-performance-dataset/code
-- https://www.kaggle.com/datasets/rabieelkharoua/predict-pet-adoption-status-dataset/code
-- https://www.kaggle.com/datasets/arashnic/book-recommendation-dataset
-- https://www.kaggle.com/competitions/playground-series-s4e6/data
-- https://archive.ics.uci.edu/dataset/697/predict+students+dropout+and+academic+success
-
-== Notebooks
-
-- https://www.kaggle.com/code/juwonoindo/book-recommendation-system-cbf-and-cf#==%3E-Model-Evaluation-with-Content-Based-Filtering
